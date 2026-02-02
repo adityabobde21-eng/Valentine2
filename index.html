@@ -105,10 +105,10 @@
 
     .popup-content {
       background: white;
-      padding: 4rem 5rem;
+      padding: 3.5rem 4.5rem;
       border-radius: 40px;
       text-align: center;
-      max-width: 680px;
+      max-width: 640px;
       box-shadow: 0 30px 90px rgba(199,21,133,0.5);
       opacity: 0;
       transform: scale(0.5) translateY(60px);
@@ -133,8 +133,8 @@
       transform: scale(1);
     }
 
-    .popup h2 { font-size: 4.2rem; color: #c71585; margin-bottom: 1.5rem; }
-    .popup p   { font-size: 1.55rem; color: #333; line-height: 1.8; margin-bottom: 2rem; }
+    .popup h2 { font-size: 4rem; color: #c71585; margin-bottom: 1.2rem; }
+    .popup p   { font-size: 1.45rem; color: #333; line-height: 1.7; margin-bottom: 2rem; }
 
     .btn {
       background: linear-gradient(45deg, #ff4d94, #ff1a75);
@@ -164,22 +164,22 @@
 
   <div class="heart-container" id="hearts"></div>
 
-  <!-- Main popup -->
+  <!-- Main popup (shorter message) -->
   <div class="popup" id="lovePopup">
     <div class="popup-content">
       <h2>Khushi… yes!!! 💖💖💖</h2>
-      <p>You actually chased that crazy button all around and still chose me…<br>
-         My heart is doing somersaults right now, I swear.<br><br>
-         I promise to keep holding your hand through everything,<br>
-         to make you laugh even on the hardest days,<br>
-         and to love you in the quiet moments and the loud ones.<br><br>
-         <strong>I love you more than I ever thought I could love anyone, Khushi. 😘</strong></p>
+      <p>You chased that crazy button and still chose me…<br>
+         My heart is exploding with happiness right now!<br><br>
+         Thank you for being my everything.<br>
+         I promise endless cuddles, love, laughter,<br>
+         and to love you more every single day.<br><br>
+         <strong>I love you so much, Khushi. 😘</strong></p>
 
-          <button class="btn" id="showGifBtn"> Click 💫</button>
+      <button class="btn" id="showGifBtn">Click here</button>
     </div>
   </div>
 
-  <!-- Final pink screen with hugging penguins GIF -->
+  <!-- Final pink screen with cartoon penguins hugging -->
   <div class="final-screen" id="finalScreen">
     <img 
       class="final-gif" 
@@ -201,7 +201,6 @@
     const yesBtn      = document.getElementById('yesBtn');
     const lovePopup   = document.getElementById('lovePopup');
     const finalScreen = document.getElementById('finalScreen');
-    const foreverBtn  = document.getElementById('foreverBtn');
     const showGifBtn  = document.getElementById('showGifBtn');
     const heartsContainer = document.getElementById('hearts');
     const clickSound  = document.getElementById('clickSound');
@@ -263,13 +262,13 @@
       } else if (clickCount >= 2) {
         if (clickCount === 2) {
           yesBtn.classList.add('grow-2');
-          startCornerMovement(1600, 420);
+          startCornerMovement(1600);
         } else if (clickCount === 3) {
           yesBtn.classList.add('grow-3');
-          startCornerMovement(1200, 520);
+          startCornerMovement(1200);
         } else if (clickCount === 4) {
           yesBtn.classList.add('grow-4');
-          startCornerMovement(900, 620);
+          startCornerMovement(900);
         } else if (clickCount >= 5) {
           stopMovement();
           heartbeatSound.pause();
@@ -302,22 +301,18 @@
       }
     });
 
-    foreverBtn.addEventListener('click', () => {
-      lovePopup.classList.remove('show');
-      setTimeout(() => lovePopup.style.display = 'none', 600);
-    });
-
+    // Only one button left – shows the pink screen + penguins GIF
     showGifBtn.addEventListener('click', () => {
       lovePopup.classList.remove('show');
       setTimeout(() => {
         lovePopup.style.display = 'none';
-        document.body.style.background = '#ffc0cb';           // solid pink
+        document.body.style.background = '#ffc0cb';  // solid pink
         finalScreen.style.display = 'flex';
         setTimeout(() => finalScreen.classList.add('show'), 50);
       }, 600);
     });
 
-    // Optional: click GIF to hide it again
+    // Optional: click GIF to hide it
     finalScreen.addEventListener('click', () => {
       finalScreen.classList.remove('show');
       setTimeout(() => finalScreen.style.display = 'none', 1200);
