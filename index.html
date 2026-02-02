@@ -101,6 +101,7 @@
 
     .final-screen {
       background: #ffc0cb;           /* solid pink */
+      flex-direction: column;
     }
 
     .popup-content {
@@ -119,18 +120,20 @@
       transform: scale(1) translateY(0);
     }
 
-    .final-gif {
-      width: 100vw;
-      height: 100vh;
-      object-fit: contain;
-      opacity: 0;
-      transform: scale(0.92);
-      transition: opacity 1.2s ease-out, transform 1.2s ease-out;
+    .final-text {
+      font-size: clamp(2.8rem, 8vw, 5rem);
+      color: #c71585;
+      font-weight: 900;
+      text-align: center;
+      text-shadow: 0 8px 30px rgba(199,21,133,0.5);
+      animation: floatText 4s ease-in-out infinite;
+      padding: 0 20px;
+      max-width: 90%;
     }
 
-    .final-screen.show .final-gif {
-      opacity: 1;
-      transform: scale(1);
+    @keyframes floatText {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50%      { transform: translateY(-30px) rotate(2deg); }
     }
 
     .popup h2 { font-size: 4rem; color: #c71585; margin-bottom: 1.2rem; }
@@ -164,7 +167,7 @@
 
   <div class="heart-container" id="hearts"></div>
 
-  <!-- Main popup (shorter message) -->
+  <!-- Main popup -->
   <div class="popup" id="lovePopup">
     <div class="popup-content">
       <h2>Khushi… yes!!! 💖💖💖</h2>
@@ -179,13 +182,9 @@
     </div>
   </div>
 
-  <!-- Final pink screen with cartoon penguins hugging -->
+  <!-- Final pink screen with text only -->
   <div class="final-screen" id="finalScreen">
-    <img 
-      class="final-gif" 
-      src="https://media.tenor.com/gI-8qCUEko8AAAAC/penguin-hug.gif"
-      alt="Penguins hugging 💕"
-    >
+    <div class="final-text">Can't wait for Valentine's Dance Hehehehehehe</div>
   </div>
 
   <!-- Sounds -->
@@ -301,21 +300,13 @@
       }
     });
 
-    // Only one button left – shows the pink screen + penguins GIF
     showGifBtn.addEventListener('click', () => {
       lovePopup.classList.remove('show');
       setTimeout(() => {
         lovePopup.style.display = 'none';
         document.body.style.background = '#ffc0cb';  // solid pink
         finalScreen.style.display = 'flex';
-        setTimeout(() => finalScreen.classList.add('show'), 50);
       }, 600);
-    });
-
-    // Optional: click GIF to hide it
-    finalScreen.addEventListener('click', () => {
-      finalScreen.classList.remove('show');
-      setTimeout(() => finalScreen.style.display = 'none', 1200);
     });
 
     function startCornerMovement(intervalMs) {
